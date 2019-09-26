@@ -24,17 +24,15 @@ def responses():
     response = requests.get('https://bnb-web-backend.herokuapp.com/api/features')
     return str(response.text)
 
-data = {"feature":[{"id":3,"neighbourhood_group_cleansed":"Spandau","description":"its is a description","property_type":"apartment","accommodates":2,"bathrooms":1,"security_deposit":200,"cleaning_fee":3,"guests_included":0,"extra_people":0,"minimum_nights":1,"instant_bookable":False,"cancellation_policy":"flexible","tv_cable":False,"pets_allowed":False,"bedrooms":1},{"id":2,"neighbourhood_group_cleansed":"maybe","description":"its is a description","property_type":"huge","accommodates":0,"bathrooms":1,"security_deposit":200,"cleaning_fee":3,"guests_included":0,"extra_people":0,"minimum_nights":1,"instant_bookable":False,"cancellation_policy":"big money","tv_cable":True,"pets_allowed":False,"bedrooms":7}]}
 
 @app.route('/api', methods=['POST', 'GET'])
 def predict():
     """
     Receives JSON as input and outputs optimal price
     """
-    #response = requests.get('https://bnb-web-backend.herokuapp.com/api/features')
     
     # retrieve json user input data
-    #data = response.json()
+    data = response.get_json(force=True)
 
     # Assign incoming data to variables for use in model
     desc = data['feature'][0]['description'] 
