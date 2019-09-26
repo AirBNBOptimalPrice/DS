@@ -32,7 +32,7 @@ def predict():
     """
     
     # retrieve json user input data
-    data = response.get_json(force=True)
+    data = request.get_json(force=True)
 
     # Assign incoming data to variables for use in model
     desc = data['feature'][0]['description'] 
