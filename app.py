@@ -89,7 +89,7 @@ def predict():
 
     # predict optimal price using the prediction function
     price = model.predict(features_transformed)
-    print(price.shape)
+    # print(price.shape)
     # return the optimal price in json format
     return jsonify({'prediction': price[0]})
 
