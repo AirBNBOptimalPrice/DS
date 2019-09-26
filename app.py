@@ -30,7 +30,7 @@ def predict():
     desc = req_data['description'] 
 
     # Run description through tokenize function
-    description = tokenize(desc)
+    description_length = len(tokenize(desc))
 
     # Continue assigning incoming data to variables for use in model
     neighbourhood_group_cleansed = req_data['neighbourhood_group_cleansed']
@@ -49,10 +49,10 @@ def predict():
     pets_allowed = req_data['pets_allowed']                      
 
     # convert to list for model
-    features = [description, neighbourhood_group_cleansed, property_type, accommodates,
+    features = [neighbourhood_group_cleansed, property_type, accommodates,
                 bathrooms, bedrooms, security_deposit, cleaning_fee, guests_included,
                 extra_people, minimum_nights, instant_bookable, cancellation_policy, 
-                tv_cable, pets_allowed]
+                description_length, tv_cable, pets_allowed]
     
     # run the features through the encoder
     features_transformed = encoder.transform(features)
@@ -60,8 +60,8 @@ def predict():
     # predict optimal price using the prediction function
     price = model.predict(features_transformed)
 
-# return the optimal price in json format
-return  jsonify({'prediction': price})
+    # return the optimal price in json format
+    return  jsonify({'prediction': price})
 
 
 
